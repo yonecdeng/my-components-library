@@ -1,0 +1,4 @@
+packages:
+  - 'packages/**' # 存放编写组件的
+  - docs # 存放⽂档的
+  - play # 用于测试组件的

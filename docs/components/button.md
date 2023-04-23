@@ -1,8 +1,6 @@
-<script>
-import {Button} from '../../packages/components/src/Button'
-export default {
-  components: { Button }
-}
+<script setup>
+import {Button} from '@components-library/Button'
+
 
 </script>
 

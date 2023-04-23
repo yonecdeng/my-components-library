@@ -14,8 +14,7 @@ module.exports = {
     nav: [
       {
         text: '组件',
-        link: '/components/button',
-        activeMatch: '/components/'
+        link: '/components/button'
       }
     ],
     sidebar: {
@@ -25,7 +24,11 @@ module.exports = {
           items: [
             {
               text: 'Button',
-              link: '/component/button'
+              link: '/components/button'
+            },
+            {
+              text: 'SingleLineBarrage',
+              link: '/components/single-line-barrage'
             }
           ]
         }

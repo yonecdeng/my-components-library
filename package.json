@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://my-components-library-yonecdeng.vercel.app/",
   "scripts": {
     "prepare": "husky install"
   },

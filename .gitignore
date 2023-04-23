@@ -5,6 +5,7 @@
 #util files
 dist/
 apps/*/dist/
+docs/*/dist/
 tmp/
 *.tsbuildinfo
 .npm

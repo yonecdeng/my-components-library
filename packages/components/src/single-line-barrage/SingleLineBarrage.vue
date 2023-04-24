@@ -1,16 +1,22 @@
+<script lang="ts">
+export enum Mode {
+  Closely = 1,
+  Separate
+}
+</script>
 <script lang="ts" setup>
 import {
   watch,
   ref,
   nextTick,
-  type VNode,
   onMounted,
   computed,
+  type VNode,
   type ComputedRef
 } from 'vue';
 import { useRafFn, useIntersectionObserver } from '@vueuse/core';
 import type { CSSProperties } from 'vue/types/jsx';
-export interface SingleLineBarrageProps<T> {
+export type SingleLineBarrageProps<T> = {
   /**
    * array 传入数据
    */
@@ -24,16 +30,20 @@ export interface SingleLineBarrageProps<T> {
    * 元素运动速率，表示 每一帧移动的px值
    */
   speed?: number;
-}
+  /**
+   * 哪种模式，默认值是closely，表示弹幕循环时紧挨着上一个弹幕，如果是separate则表示循环时弹幕之间有间隔
+   */
+  mode?: Mode;
+};
 
 export interface SingleLineBarrageSlots<T> {
   default?: ({ item }: { item: T }) => VNode[] | undefined;
 }
-
 const props = withDefaults(defineProps<SingleLineBarrageProps<unknown>>(), {
   list: () => [],
-  maxShowNum: 3,
-  speed: 1
+  maxShowNum: 5,
+  speed: 1,
+  mode: Mode.Closely
 });
 
 interface ListItemWithUid {
@@ -46,7 +56,7 @@ const singleLineBarrageRef = ref<HTMLDivElement>();
 let singleLineBarrageWidth = 0;
 
 let nextAddIndex = 0; //下一个准备加入到inDomList的元素 在data中的索引。
-const inDomNum = props.maxShowNum + 1 + 1; //第一个加一是因为如果用户想同时完整3个弹幕的话，那页面中就有可能同时出现3+1个弹幕。//第二个加一是因为需要缓冲一个。
+let inDomNum = props.maxShowNum + 1 + 1; //第一个加一是因为如果用户想同时完整3个弹幕的话，那页面中就有可能同时出现3+1个弹幕。//第二个加一是因为需要缓冲一个。
 const translateX = ref<number>(0);
 
 const singleLineBarrageStyles: ComputedRef<CSSProperties> = computed(() => {
@@ -68,6 +78,9 @@ const { pause: pauseAnimation, resume: resumeAnimation } = useRafFn(
 function initInDomList() {
   inDomList.value = [];
   if (propsListLength > 0) {
+    if (props.mode === Mode.Separate && inDomNum > propsListLength) {
+      inDomNum = propsListLength;
+    }
     for (let i = 0; i < inDomNum; i++) {
       inDomList.value.push({
         item: props.list[i % propsListLength],
@@ -82,9 +95,14 @@ function updateInDomList() {
     //如果uid超出了inDomNum则重置uid开始计数，避免uid无限大。因为页面上最多就出现inDomNum个元素，所以此时重置uid能确保页面上不会出现重复的uid
     uid = 1;
   }
+
   if (nextAddIndex >= propsListLength) {
     nextAddIndex = 0;
   }
+  if (props.mode === Mode.Separate && nextAddIndex === 0) {
+    return;
+  }
+
   inDomList.value.shift();
   inDomList.value.push({
     item: props.list[nextAddIndex],
@@ -116,9 +134,46 @@ function installFirstElementObserver() {
         updateInDomList();
         currentIntersectionObserverStop?.();
         nextTick(() => {
-          translateX.value = 0;
-          installFirstElementObserver();
+          if (props.mode === Mode.Separate && nextAddIndex == 0) {
+            installLastElementObserver();
+          } else {
+            translateX.value = 0;
+            installFirstElementObserver();
+          }
           resumeAnimation?.();
+        });
+      }
+    },
+    {
+      threshold: 0,
+      root: singleLineBarrageRef.value?.parentElement,
+      rootMargin: '0px 100px 0px 0px'
+    } //扩大可见区域，保证我一开始将元素移出屏幕外之后元素仍在可见区
+  );
+  currentIntersectionObserverStop = stop;
+}
+
+function installLastElementObserver() {
+  const target = singleLineBarrageRef.value?.children[
+    inDomList.value.length - 1
+  ] as HTMLElement | undefined;
+  if (!target) return;
+  let hadAppear = false;
+  const { stop } = useIntersectionObserver(
+    target,
+    ([{ isIntersecting }]) => {
+      if (isIntersecting) {
+        hadAppear = true;
+      }
+      if (!isIntersecting && hadAppear) {
+        //因为我缓冲了一个元素，可能给这个元素绑监听器的时候就不在可视区上，那就会直接触发函数了，所以要确保是曾经出现过再消失
+        hadAppear = false;
+        pauseAnimation();
+        reset();
+        currentIntersectionObserverStop?.();
+        nextTick(() => {
+          installFirstElementObserver();
+          resumeAnimation();
         });
       }
     },

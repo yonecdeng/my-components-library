@@ -14,8 +14,13 @@ module.exports = {
     nav: [
       {
         text: '组件',
-        link: '/components/button',
-        activeMatch: '/components/'
+        link: '/components/button'
+      }
+    ],
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/yonecdeng/my-components-library'
       }
     ],
     sidebar: {
@@ -25,7 +30,15 @@ module.exports = {
           items: [
             {
               text: 'Button',
-              link: '/component/button'
+              link: '/components/button'
+            },
+            {
+              text: 'SingleLineBarrage',
+              link: '/components/single-line-barrage'
+            },
+            {
+              text: 'BubbleBarrage',
+              link: '/components/bubble-barrage'
             }
           ]
         }

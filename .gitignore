@@ -1,7 +1,7 @@
 # local env files
 .env.local
 .env.*.local
-
+docs/.vitepress/cache
 #util files
 dist/
 apps/*/dist/

@@ -2,7 +2,7 @@
 import { watch, ref, computed, type Ref, type VNode, nextTick } from 'vue';
 import { useRafFn } from '@vueuse/core';
 
-export interface BarrageProps<T> {
+export interface BubbleBarrageProps<T> {
   /**
    * 每个item的高度，414下的px值
    */
@@ -25,7 +25,7 @@ export interface BarrageProps<T> {
   play?: boolean;
 }
 
-export interface BarrageSlots<T> {
+export interface BubbleBarrageSlots<T> {
   default?: ({ item }: { item: T }) => VNode[] | undefined;
 }
 
@@ -34,7 +34,7 @@ interface BulletItemWithUid {
   uid: number;
 }
 
-const props = withDefaults(defineProps<BarrageProps<unknown>>(), {
+const props = withDefaults(defineProps<BubbleBarrageProps<unknown>>(), {
   itemHeight: 60,
   duration: 2,
   list: () => [],
@@ -130,17 +130,31 @@ watch(
 @keyframes move {
   0% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(0.2);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
   80% {
     opacity: 1;
-    transform: translateY(var(--item-move-step-1));
+    transform: translateY(var(--item-move-step-1)) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateY(var(--item-move-step-2));
+    transform: translateY(var(--item-move-step-2)) scale(1);
   }
 }
+
+@keyframes appear {
+  0% {
+    transform: scale(0.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .bubble-barrage-container {
   position: relative; //如果不让他脱标的话，元素的位置会根据dom的顺序，这样会导致我想让元素应该出现的位置不符合预期（可以删掉绝对定位看看效果）
   & > div {

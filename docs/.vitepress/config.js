@@ -17,6 +17,12 @@ module.exports = {
         link: '/components/button'
       }
     ],
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/yonecdeng/my-components-library'
+      }
+    ],
     sidebar: {
       '/components/': [
         {

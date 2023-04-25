@@ -29,6 +29,10 @@ module.exports = {
             {
               text: 'SingleLineBarrage',
               link: '/components/single-line-barrage'
+            },
+            {
+              text: 'BubbleBarrage',
+              link: '/components/bubble-barrage'
             }
           ]
         }

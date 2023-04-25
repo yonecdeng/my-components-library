@@ -1,5 +1,5 @@
 <script setup>
-import SingleLineBarrage, {Mode} from '@components-library/single-line-barrage'
+import SingleLineBarrage, {Mode} from '@components-library/data-show/single-line-barrage'
 
 const data = [
     {desc:'第一个'},

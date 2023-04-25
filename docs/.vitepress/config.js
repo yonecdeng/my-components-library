@@ -14,7 +14,7 @@ module.exports = {
     nav: [
       {
         text: '组件',
-        link: '/components/button'
+        link: '/components/data-show/single-line-barrage'
       }
     ],
     socialLinks: [
@@ -31,14 +31,23 @@ module.exports = {
             {
               text: 'Button',
               link: '/components/button'
-            },
+            }
+          ]
+        },
+        {
+          text: '数据展示',
+          items: [
             {
               text: 'SingleLineBarrage',
-              link: '/components/single-line-barrage'
+              link: '/components/data-show/single-line-barrage'
             },
             {
               text: 'BubbleBarrage',
-              link: '/components/bubble-barrage'
+              link: '/components/data-show/bubble-barrage'
+            },
+            {
+              text: 'list',
+              link: '/components/data-show/list'
             }
           ]
         }

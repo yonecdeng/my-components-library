@@ -5,7 +5,10 @@
   "main": "index.js",
   "homepage": "https://my-components-library-yonecdeng.vercel.app/",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint --ext .ts,.mts,.vue .",
+    "format-check": "prettier --check .",
+    "format-fix": "prettier --write ."
   },
   "engines": {
     "npm": "please-use-pnpm",

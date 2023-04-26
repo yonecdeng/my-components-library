@@ -15,6 +15,10 @@ module.exports = {
       {
         text: '组件',
         link: '/components/data-show/single-line-barrage'
+      },
+      {
+        text: '工具',
+        link: '/utils/base'
       }
     ],
     socialLinks: [
@@ -48,6 +52,17 @@ module.exports = {
             {
               text: 'list',
               link: '/components/data-show/list'
+            }
+          ]
+        }
+      ],
+      '/utils/': [
+        {
+          text: '基础工具',
+          items: [
+            {
+              text: 'base',
+              link: '/utils/base'
             }
           ]
         }

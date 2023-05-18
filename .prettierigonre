@@ -1,4 +1,5 @@
 ## OS
+
 .DS_Store
 .idea
 .editorconfig
@@ -6,16 +7,20 @@ package-lock.json
 .npmrc
 
 # Ignored suffix
+
+*.yaml
 *.log
 *.md
-*.svg
-*.png
+*_.svg
+.png
 *ignore
 
 ## Local
+
 node_modules
 .husky
-
+.prettierignore
 ## Built-files
+
 .cache
 dist

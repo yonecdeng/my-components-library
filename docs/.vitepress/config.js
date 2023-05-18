@@ -65,6 +65,24 @@ module.exports = {
               link: '/utils/base'
             }
           ]
+        },
+        {
+          text: '网络请求',
+          items: [
+            {
+              text: 'network',
+              link: '/utils/network/axios'
+            }
+          ]
+        },
+        {
+          text: '移动端',
+          items: [
+            {
+              text: 'unit',
+              link: '/utils/mobile/unit'
+            }
+          ]
         }
       ]
     }

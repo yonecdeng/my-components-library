@@ -33,9 +33,9 @@ import {
   version,
   watch,
   watchEffect
-} from './chunk-N5TED7FU.js';
+} from './chunk-FYYTY2GY.js';
 
-// ../node_modules/.pnpm/vue-demi@0.14.0_vue@3.2.47/node_modules/vue-demi/lib/index.mjs
+// ../node_modules/.pnpm/vue-demi@0.14.5_vue@3.3.4/node_modules/vue-demi/lib/index.mjs
 var isVue2 = false;
 var isVue3 = true;
 function set(target, key, val) {
@@ -55,7 +55,7 @@ function del(target, key) {
   delete target[key];
 }
 
-// ../node_modules/.pnpm/@vueuse+shared@10.1.0_vue@3.2.47/node_modules/@vueuse/shared/index.mjs
+// ../node_modules/.pnpm/@vueuse+shared@10.1.2_vue@3.3.4/node_modules/@vueuse/shared/index.mjs
 var __defProp$b = Object.defineProperty;
 var __defProps$8 = Object.defineProperties;
 var __getOwnPropDescs$8 = Object.getOwnPropertyDescriptors;
@@ -1894,7 +1894,7 @@ function whenever(source, cb, options) {
   );
 }
 
-// ../node_modules/.pnpm/@vueuse+core@10.1.0_vue@3.2.47/node_modules/@vueuse/core/index.mjs
+// ../node_modules/.pnpm/@vueuse+core@10.1.2_vue@3.3.4/node_modules/@vueuse/core/index.mjs
 function computedAsync(evaluationCallback, initialState, optionsOrRef) {
   let options;
   if (isRef(optionsOrRef)) {
@@ -1995,11 +1995,11 @@ function createReusableTemplate() {
       );
     return;
   }
-  let render;
+  const render = shallowRef();
   const define = defineComponent({
     setup(_, { slots }) {
       return () => {
-        render = slots.default;
+        render.value = slots.default;
       };
     }
   });
@@ -2007,13 +2007,15 @@ function createReusableTemplate() {
     inheritAttrs: false,
     setup(_, { attrs, slots }) {
       return () => {
-        if (!render && true)
+        var _a;
+        if (!render.value && true)
           throw new Error(
             '[VueUse] Failed to find the definition of reusable template'
           );
-        return render == null
+        return (_a = render.value) == null
           ? void 0
-          : render(
+          : _a.call(
+              render,
               __spreadProps$c(__spreadValues$p({}, attrs), { $slots: slots })
             );
       };
@@ -5072,22 +5074,19 @@ function combineCallbacks(combination, ...callbacks) {
   if (combination === 'overwrite') {
     return async (ctx) => {
       const callback = callbacks[callbacks.length - 1];
-      if (callback !== void 0) await callback(ctx);
+      if (callback)
+        return __spreadValues$d(__spreadValues$d({}, ctx), await callback(ctx));
       return ctx;
     };
   } else {
     return async (ctx) => {
-      await callbacks.reduce(
-        (prevCallback, callback) =>
-          prevCallback.then(async () => {
-            if (callback)
-              ctx = __spreadValues$d(
-                __spreadValues$d({}, ctx),
-                await callback(ctx)
-              );
-          }),
-        Promise.resolve()
-      );
+      for (const callback of callbacks) {
+        if (callback)
+          ctx = __spreadValues$d(
+            __spreadValues$d({}, ctx),
+            await callback(ctx)
+          );
+      }
       return ctx;
     };
   }
@@ -6059,10 +6058,13 @@ var __spreadValues$a2 = (a, b) => {
 async function loadImage(options) {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    const { src, srcset, sizes } = options;
+    const { src, srcset, sizes, class: clazz, loading, crossorigin } = options;
     img.src = src;
     if (srcset) img.srcset = srcset;
     if (sizes) img.sizes = sizes;
+    if (clazz) img.className = clazz;
+    if (loading) img.loading = loading;
+    if (crossorigin) img.crossOrigin = crossorigin;
     img.onload = () => resolve(img);
     img.onerror = reject;
   });
@@ -6157,19 +6159,16 @@ function useScroll(element, options = {}) {
     onStop(e);
   };
   const onScrollEndDebounced = useDebounceFn(onScrollEnd, throttle + idle);
-  const onScrollHandler = (e) => {
-    const eventTarget =
-      e.target === document ? e.target.documentElement : e.target;
-    const { display, flexDirection } = getComputedStyle(eventTarget);
-    const scrollLeft = eventTarget.scrollLeft;
+  const setArrivedState = (target) => {
+    const el = target === document ? target.documentElement : target;
+    const { display, flexDirection } = getComputedStyle(el);
+    const scrollLeft = el.scrollLeft;
     directions.left = scrollLeft < internalX.value;
     directions.right = scrollLeft > internalX.value;
     const left = Math.abs(scrollLeft) <= 0 + (offset.left || 0);
     const right =
-      Math.abs(scrollLeft) + eventTarget.clientWidth >=
-      eventTarget.scrollWidth -
-        (offset.right || 0) -
-        ARRIVED_STATE_THRESHOLD_PIXELS;
+      Math.abs(scrollLeft) + el.clientWidth >=
+      el.scrollWidth - (offset.right || 0) - ARRIVED_STATE_THRESHOLD_PIXELS;
     if (display === 'flex' && flexDirection === 'row-reverse') {
       arrivedState.left = right;
       arrivedState.right = left;
@@ -6178,17 +6177,14 @@ function useScroll(element, options = {}) {
       arrivedState.right = right;
     }
     internalX.value = scrollLeft;
-    let scrollTop = eventTarget.scrollTop;
-    if (e.target === document && !scrollTop)
-      scrollTop = document.body.scrollTop;
+    let scrollTop = el.scrollTop;
+    if (target === document && !scrollTop) scrollTop = document.body.scrollTop;
     directions.top = scrollTop < internalY.value;
     directions.bottom = scrollTop > internalY.value;
     const top = Math.abs(scrollTop) <= 0 + (offset.top || 0);
     const bottom =
-      Math.abs(scrollTop) + eventTarget.clientHeight >=
-      eventTarget.scrollHeight -
-        (offset.bottom || 0) -
-        ARRIVED_STATE_THRESHOLD_PIXELS;
+      Math.abs(scrollTop) + el.clientHeight >=
+      el.scrollHeight - (offset.bottom || 0) - ARRIVED_STATE_THRESHOLD_PIXELS;
     if (display === 'flex' && flexDirection === 'column-reverse') {
       arrivedState.top = bottom;
       arrivedState.bottom = top;
@@ -6197,6 +6193,11 @@ function useScroll(element, options = {}) {
       arrivedState.bottom = bottom;
     }
     internalY.value = scrollTop;
+  };
+  const onScrollHandler = (e) => {
+    const eventTarget =
+      e.target === document ? e.target.documentElement : e.target;
+    setArrivedState(eventTarget);
     isScrolling.value = true;
     onScrollEndDebounced(e);
     onScroll(e);
@@ -6215,7 +6216,11 @@ function useScroll(element, options = {}) {
     y,
     isScrolling,
     arrivedState,
-    directions
+    directions,
+    measure() {
+      const _element = toValue(element);
+      if (_element) setArrivedState(_element);
+    }
   };
 }
 var __defProp$92 = Object.defineProperty;
@@ -6262,6 +6267,7 @@ function useInfiniteScroll(element, onLoadMore, options = {}) {
   const promise = ref();
   const isLoading = computed(() => !!promise.value);
   function checkAndLoad() {
+    state.measure();
     const el = toValue(element);
     if (!el) return;
     const isNarrower =

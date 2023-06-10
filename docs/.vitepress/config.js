@@ -1,6 +1,6 @@
 module.exports = {
-  title: '组件库',
-  description: '收集开发中自己写的vue组件',
+  title: 'dyc工具集',
+  description: '将经验转化为工程：收集组件、工具、脚本、插件',
   themeConfig: {
     lastUpdated: '最后更新时间',
     docsDir: 'docs',
@@ -19,6 +19,10 @@ module.exports = {
       {
         text: '工具',
         link: '/utils/base'
+      },
+      {
+        text: '脚本',
+        link: '/scripts/index'
       }
     ],
     socialLinks: [

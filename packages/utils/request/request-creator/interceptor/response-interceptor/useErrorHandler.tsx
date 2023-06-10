@@ -1,6 +1,6 @@
 import type { ResponseData } from '../..';
 import { type Router } from 'vue-router';
-import { request } from '../../../demo/instance';
+import request from '../../../demo/instance';
 import { AxiosResponse } from 'axios';
 
 interface ErrorHandlerConfig {

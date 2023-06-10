@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onUnmounted, ref } from 'vue';
 import { useIntersectionObserver } from '@vueuse/core';
-import { loaderProps, loaderEmits } from './loader';
+import { loaderProps, loaderEmits } from './reach-bottom-loader';
 const props = defineProps(loaderProps);
 const emits = defineEmits(loaderEmits);
 const loadRef = ref<HTMLDivElement | null>(null);

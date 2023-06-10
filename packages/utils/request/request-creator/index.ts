@@ -41,8 +41,8 @@ function RequestCreator(config: AxiosRequestConfig) {
     });
   };
   return {
-    axiosInstance,
-    request
+    axiosInstance, //实例暴露出去用于注册拦截器
+    request //用这个方法进行请求
   };
 }
 // 拦截器执行顺序: 接口本身拦截器请求 -> 实例拦截器请求  -> 实例拦截器响应 -> 接口本身拦截器响应

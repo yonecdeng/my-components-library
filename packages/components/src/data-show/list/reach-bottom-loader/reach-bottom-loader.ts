@@ -14,6 +14,6 @@ export const loaderEmits = {
 };
 export type LoaderEmits = typeof loaderEmits;
 
-export type LoadMoreSlots = {
+export type LoaderSlots = {
   default?: () => VNode[] | undefined;
 };

@@ -6,7 +6,7 @@
 
 <script setup>
 import { reactive } from 'vue';
-import Loader from '@components-library/feedback/loader'
+import Loader from '@components-library/data-show/list/reach-bottom-loader';
 const getData = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -36,7 +36,7 @@ const data = reactive([1, 2, 3, 4, 5]);
 ```vue
 <script setup>
 import { reactive } from 'vue';
-import Loader from '@components-library/feedback/loader'
+import Loader from '@components-library/data-show/list/reach-bottom-loader';
 const getData = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -63,7 +63,7 @@ const data = reactive([1, 2, 3, 4, 5]);
 
 </details>
 
-### props&slots
+### props&emits&slots
 
 ```ts
 export const loaderProps = {
@@ -77,5 +77,10 @@ export type LoaderProps = Partial<ExtractPropTypes<typeof loaderProps>>;
 
 export const loaderEmits = {
   'to-bottom': () => true
+};
+export type LoaderEmits = typeof loaderEmits;
+
+export type LoaderSlots = {
+  default?: () => VNode[] | undefined;
 };
 ```

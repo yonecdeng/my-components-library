@@ -34,12 +34,11 @@ axiosInstance.interceptors.response.use(
     if (response === undefined) {
       return response;
     }
-    if (response.data.result === 1) {
-      return response.data;
-    } else {
+    if (response.data.result !== 1) {
       safeguardingHandler(response);
       requestApisErrorHandler(response);
     }
+    return response.data; // 拦截器处理之后返回的是reponse里的data，即我项目中拿到的返回是response.data
   },
   (err) => {
     networkErrorHandler(err.config?.url);

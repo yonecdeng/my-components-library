@@ -8,6 +8,7 @@ importers:
       '@commitlint/config-conventional': ^17.6.1
       '@eslint/create-config': 0.4.3
       '@types/qs': ^6.9.7
+      '@types/vue': ^2.0.0
       '@typescript-eslint/eslint-plugin': ^5.59.0
       '@typescript-eslint/parser': ^5.59.0
       '@vue/eslint-config-typescript': ^11.0.2
@@ -33,6 +34,7 @@ importers:
       vue-router: ^4.2.0
     dependencies:
       '@types/qs': 6.9.7
+      '@types/vue': 2.0.0
       '@vueuse/core': 10.1.2_vue@3.3.4
       axios: 1.4.0
       qs: 6.11.2
@@ -50,7 +52,7 @@ importers:
       cz-conventional-changelog: 3.3.0
       eslint: 8.42.0
       eslint-config-prettier: 8.8.0_eslint@8.42.0
-      eslint-plugin-prettier: 4.2.1_eveahbx3r3okkkxu7l44ces2q4
+      eslint-plugin-prettier: 4.2.1_vnriwwub2rhvoyn4ckagrc4lpi
       eslint-plugin-react: 7.32.2_eslint@8.42.0
       eslint-plugin-vue: 9.14.1_eslint@8.42.0
       husky: 8.0.3
@@ -651,6 +653,8 @@ packages:
       json-stable-stringify-without-jsonify: 1.0.1
       mri: 1.2.0
       semver: 7.5.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@eslint/eslintrc/1.4.1:
@@ -666,6 +670,8 @@ packages:
       js-yaml: 4.1.0
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@eslint/eslintrc/2.0.3:
@@ -681,6 +687,8 @@ packages:
       js-yaml: 4.1.0
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@eslint/js/8.42.0:
@@ -695,6 +703,8 @@ packages:
       '@humanwhocodes/object-schema': 1.2.1
       debug: 4.3.4
       minimatch: 3.1.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@humanwhocodes/module-importer/1.0.1:
@@ -782,6 +792,13 @@ packages:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
     dev: true
 
+  /@types/vue/2.0.0:
+    resolution: {integrity: sha512-WDElkBv/o4lVwu6wYHB06AXs4Xo2fwDjJUpvPRc1QQdzkUSiGFjrYuSCy8raxLE5FObgKq8ND7R5gSZTFLK60w==}
+    deprecated: This is a stub types definition for vuejs (https://github.com/vuejs/vue). vuejs provides its own type definitions, so you don't need @types/vue installed!
+    dependencies:
+      vue: 3.3.4
+    dev: false
+
   /@types/web-bluetooth/0.0.17:
     resolution: {integrity: sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA==}
 
@@ -791,6 +808,10 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': ^5.0.0
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       '@eslint-community/regexpp': 4.5.1
       '@typescript-eslint/parser': 5.59.9_tizxnkcvjrb4cldxgwq5h3lj5u
@@ -804,8 +825,9 @@ packages:
       natural-compare-lite: 1.4.0
       semver: 7.5.1
       tsutils: 3.21.0_typescript@5.1.3
+      typescript: 5.1.3
     transitivePeerDependencies:
-      - typescript
+      - supports-color
     dev: true
 
   /@typescript-eslint/parser/5.59.9_tizxnkcvjrb4cldxgwq5h3lj5u:
@@ -813,14 +835,19 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       '@typescript-eslint/scope-manager': 5.59.9
       '@typescript-eslint/types': 5.59.9
       '@typescript-eslint/typescript-estree': 5.59.9_typescript@5.1.3
       debug: 4.3.4
       eslint: 8.42.0
+      typescript: 5.1.3
     transitivePeerDependencies:
-      - typescript
+      - supports-color
     dev: true
 
   /@typescript-eslint/scope-manager/5.59.9:
@@ -836,14 +863,19 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '*'
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       '@typescript-eslint/typescript-estree': 5.59.9_typescript@5.1.3
       '@typescript-eslint/utils': 5.59.9_tizxnkcvjrb4cldxgwq5h3lj5u
       debug: 4.3.4
       eslint: 8.42.0
       tsutils: 3.21.0_typescript@5.1.3
+      typescript: 5.1.3
     transitivePeerDependencies:
-      - typescript
+      - supports-color
     dev: true
 
   /@typescript-eslint/types/5.59.9:
@@ -854,6 +886,11 @@ packages:
   /@typescript-eslint/typescript-estree/5.59.9_typescript@5.1.3:
     resolution: {integrity: sha512-pmM0/VQ7kUhd1QyIxgS+aRvMgw+ZljB3eDb+jYyp6d2bC0mQWLzUDF+DLwCTkQ3tlNyVsvZRXjFyV0LkU/aXjA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       '@typescript-eslint/types': 5.59.9
       '@typescript-eslint/visitor-keys': 5.59.9
@@ -862,8 +899,9 @@ packages:
       is-glob: 4.0.3
       semver: 7.5.1
       tsutils: 3.21.0_typescript@5.1.3
+      typescript: 5.1.3
     transitivePeerDependencies:
-      - typescript
+      - supports-color
     dev: true
 
   /@typescript-eslint/utils/5.59.9_tizxnkcvjrb4cldxgwq5h3lj5u:
@@ -882,6 +920,7 @@ packages:
       eslint-scope: 5.1.1
       semver: 7.5.1
     transitivePeerDependencies:
+      - supports-color
       - typescript
     dev: true
 
@@ -1003,6 +1042,8 @@ packages:
       eslint-plugin-vue: 9.14.1_eslint@8.42.0
       typescript: 5.1.3
       vue-eslint-parser: 9.3.0_eslint@8.42.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@vue/reactivity-transform/3.3.4:
@@ -1268,6 +1309,8 @@ packages:
       follow-redirects: 1.15.2
       form-data: 4.0.0
       proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /balanced-match/1.0.2:
@@ -1641,6 +1684,11 @@ packages:
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.1.2
     dev: true
@@ -1880,14 +1928,19 @@ packages:
       eslint: 8.42.0
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_eveahbx3r3okkkxu7l44ces2q4:
+  /eslint-plugin-prettier/4.2.1_vnriwwub2rhvoyn4ckagrc4lpi:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       eslint: '>=7.28.0'
+      eslint-config-prettier: '*'
       prettier: '>=2.0.0'
+    peerDependenciesMeta:
+      eslint-config-prettier:
+        optional: true
     dependencies:
       eslint: 8.42.0
+      eslint-config-prettier: 8.8.0_eslint@8.42.0
       prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -1930,6 +1983,8 @@ packages:
       semver: 7.5.1
       vue-eslint-parser: 9.3.0_eslint@8.42.0
       xml-name-validator: 4.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /eslint-scope/5.1.1:
@@ -1997,6 +2052,8 @@ packages:
       strip-ansi: 6.0.1
       strip-json-comments: 3.1.1
       text-table: 0.2.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /espree/9.5.2:
@@ -2192,6 +2249,11 @@ packages:
   /follow-redirects/1.15.2:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     dev: false
 
   /for-each/0.3.3:
@@ -2871,6 +2933,7 @@ packages:
       yaml: 2.3.1
     transitivePeerDependencies:
       - enquirer
+      - supports-color
     dev: true
 
   /listr2/5.0.8:
@@ -2878,6 +2941,9 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     peerDependencies:
       enquirer: '>= 2.3.0 < 3'
+    peerDependenciesMeta:
+      enquirer:
+        optional: true
     dependencies:
       cli-truncate: 2.1.0
       colorette: 2.0.20
@@ -3948,6 +4014,8 @@ packages:
       glob: 7.2.3
       sax: 1.2.4
       source-map: 0.7.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /supports-color/5.5.0:
@@ -4019,6 +4087,11 @@ packages:
       '@swc/wasm': '>=1.2.50'
       '@types/node': '*'
       typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.9
@@ -4201,6 +4274,9 @@ packages:
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
       vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
     dependencies:
       vue: 3.3.4
 
@@ -4218,6 +4294,8 @@ packages:
       esquery: 1.5.0
       lodash: 4.17.21
       semver: 7.5.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /vue-router/4.2.2_vue@3.3.4:

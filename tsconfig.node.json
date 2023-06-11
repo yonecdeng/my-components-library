@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "types": ["unplugin-vue-define-options/macros-global" /* ... */],
+    "types": [
+      "@types/vue",
+      "unplugin-vue-define-options/macros-global" /* ... */
+    ],
     "module": "ESNext", // 打包模块类型ESNext
     "declaration": false, // 默认不要声明⽂件
     "noImplicitAny": true, // 当 noImplicitAny 标志是 false( 默认值 ) 时， 如果编译器无法根据变量的用途推断出变量的类型，它就会悄悄的把变量类型默认为 any。这就是 隐式 any 的含义;当 noImplicitAny 标志是 true 并且 TypeScript 编译器无法推断出类型时，它仍然会生成 JavaScript 文件。 但是它也会 报告一个错误 。

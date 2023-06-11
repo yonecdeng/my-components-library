@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@types/qs": "^6.9.7",
+    "@types/vue": "^2.0.0",
     "@vueuse/core": "^10.1.0",
     "axios": "^1.3.6",
     "qs": "^6.11.2",

@@ -1,8 +1,8 @@
 import { watch } from 'vue';
 import usePopupQueue from '../index';
-import FirstPopup from './Popups/FirstPopup.vue';
-import SecondPopup from './Popups/SecondPopup.vue';
-import ThirdPopup from './Popups/ThirdPopup.vue';
+import FirstPopup from './popups/FirstPopup.vue';
+import SecondPopup from './popups/SecondPopup.vue';
+import ThirdPopup from './popups/ThirdPopup.vue';
 export enum PopupTypes {
   THE_FIRST_TIME_ENTER_REMIND_CERTIFICATION_POPUP, // 首次进入页面提醒认证弹,
   RULE_SHOW_POPUP, // 规则展示弹窗

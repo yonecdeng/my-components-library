@@ -20,7 +20,8 @@ export default defineConfig({
       '@components-library': `${path.resolve(
         __dirname,
         '../packages/components/src'
-      )}`
+      )}`,
+      '@hooks': `${path.resolve(__dirname, '../packages/hooks')}`
     }
   }
 });

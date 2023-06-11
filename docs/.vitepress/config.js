@@ -17,6 +17,10 @@ module.exports = {
         link: '/components/data-show/single-line-barrage'
       },
       {
+        text: 'hooks',
+        link: '/hooks/feedback/use-popup-queue'
+      },
+      {
         text: '工具',
         link: '/utils/base'
       },
@@ -56,6 +60,17 @@ module.exports = {
             {
               text: 'list',
               link: '/components/data-show/list'
+            }
+          ]
+        }
+      ],
+      '/hooks/': [
+        {
+          text: 'feedback',
+          items: [
+            {
+              text: 'usePopupQueue',
+              link: '/hooks/feedback/use-popup-queue'
             }
           ]
         }
